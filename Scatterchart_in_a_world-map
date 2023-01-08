@@ -1,1 +1,24 @@
 
+# For Map (Token of Mapbox)
+import pandas as pd
+import plotly.express as px
+mapbox_access_token = 'but in your access token'
+px.set_mapbox_access_token(mapbox_access_token)
+
+
+# Load Dataset
+df_geo = pd.read_excel("df_geo.xlsx")
+
+# Scatterplot in Map
+karte = px.scatter_mapbox(df_geo, lat="Längengrad", lon="Breitengrad", 
+                        color_discrete_sequence=["indianred"], 
+                        size_max=100, 
+                        zoom=10, 
+                        height=600,
+                        size="Anzahl",
+                        hover_data={"Sehenswürdigkeit": True,
+                                    "Anzahl": True,
+                                    "Längengrad": False,
+                                    "Breitengrad": False,
+                                    }
+                        )
